@@ -8,11 +8,32 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        white: "#ede8e4",
       },
+      screens: {
+        sm400: "400px",
+        sm500: "500px",
+        sm600: "600px",
+        md800: "800px",
+        md900: "900px",
+        sc: "1500px",
+      },
+      // fontSize: {
+      //   sm: "max(12px,0.76vw)",
+      //   smm: "max(13px,0.86vw)",
+      //   md: "max(14px,0.95vw)",
+      //   mdd: "max(15px,1.05vw)",
+      //   base: "max(16px,1.15vw)",
+      //   lg: "max(18px,1.35vw)",
+      //   xl: "max(20px,1.55vw)",
+      //   "2xl": "max(24px,1.95vw)",
+      //   "3xl": "max(30px,1.95vw)",
+      //   "4xl": "max(36px,2.55vw)",
+      //   "5xl": "max(48px,3.35vw)",
+      //   "6xl": "max(60px,4.55vw)",
+      //   "7xl": "max(72px,5.75vw)",
+      // },
     },
   },
   plugins: [],
