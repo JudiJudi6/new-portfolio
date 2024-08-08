@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import Scrollbar from "smooth-scrollbar";
 import { ScrollbarOptions } from "smooth-scrollbar/interfaces";
+import SectionExp from "./components/SectionExp";
+import SectionFooter from "./components/SectionFooter";
 import SectionProjects from "./components/SectionProjects";
 import SectionWelcome from "./components/SectionWelcome";
 import Background from "./components/ui/Background";
@@ -25,22 +27,6 @@ const options: Partial<ScrollbarOptions> = {
 export default function Home() {
   const [y, setY] = useState(0);
   const scrollbarRef = useRef<Scrollbar | null>(null);
-  const [isFixed, setIsFixed] = useState<boolean>(false);
-  const [distance, setDistance] = useState<number>(200);
-
-  useEffect(
-    function () {
-      console.log("Latest scrollY:", y);
-
-      if (y > 1470 && y < 2940) {
-        setDistance(y);
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    },
-    [y]
-  );
 
   useEffect(() => {
     const app = document.querySelector("#app");
@@ -57,30 +43,38 @@ export default function Home() {
 
       scrollbarRef.current.addListener(handleScroll);
 
-      // Call handleScroll immediately to set initial scroll value
       handleScroll();
 
       return () => {
         scrollbarRef.current?.removeListener(handleScroll);
       };
     }
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, []);
 
-  // useEffect(() => {
-  //   console.log(`Scroll Percent: ${scrollPercent}%`);
-  // }, [scrollPercent]);
+  useEffect(() => {
+    scrollbarRef.current?.addListener(function (status) {
+      const offset = status.offset;
+
+      if (Math.abs(offset.y - innerHeight) <= 2) {
+        scrollbarRef.current?.setMomentum(0, 0);
+      }
+    });
+  }, [y]);
 
   return (
-    <main className=" relative flex min-h-screen w-full flex-col items-center">
+    <main className=" relative flex min-h-screen w-full flex-col items-center ">
       <Loader scrollbarRef={scrollbarRef} />
       <SectionWelcome scrollY={y} />
-      <SectionDescription scrollY={y} />
-      <div className="relative h-[200vh] w-full [perspective:1000px] [transform-style:preserve-3d] antialiased ">
-        <Background distance={distance} isFixed={isFixed} />
+      <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
+      <Background distance={y} scrollbar={scrollbarRef} />
+      <div className="z-10 translate-y-[-100vh] text-white">
+        <SectionExp />
+        <SectionProjects />
+        <SectionProjects />
+        <SectionProjects />
+        <SectionProjects />
       </div>
-      {/* <SectionExp /> */}
-      <SectionProjects />
-      <section className="h-screen w-full"></section>
+      <SectionFooter />
     </main>
   );
 }

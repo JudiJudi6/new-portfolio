@@ -16,12 +16,14 @@ body {
 }
 
 .scrollbar-track {
-  background-color: #ede8e4 !important;
+  background-color: transparent !important;
+  display: none;
 }
 
 .scrollbar-thumb {
   background-color: black !important;
   border-radius: none !important;
+  display: none;
 }
 
 .hidden-app {

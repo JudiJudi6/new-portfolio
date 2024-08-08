@@ -1,38 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { MutableRefObject, useEffect, useRef } from "react";
+import { Scrollbar } from "smooth-scrollbar/scrollbar";
 
 interface BackgroundProps {
   distance: number;
-  isFixed: boolean;
+  scrollbar: MutableRefObject<Scrollbar | null>;
 }
 
-export default function Background({ distance, isFixed }: BackgroundProps) {
-  const [top, setTop] = useState(0);
+export default function Background({ distance, scrollbar }: BackgroundProps) {
   const sticky = useRef<HTMLDivElement>(null);
 
-  useEffect(
-    function () {
+  useEffect(() => {
+    scrollbar.current?.addListener(function (status) {
+      const offset = status.offset;
+
       if (sticky.current) {
-        console.log(
-          Math.abs(sticky.current.getBoundingClientRect().top).toFixed()
-        );
-        setTop(+Math.abs(sticky.current.getBoundingClientRect().top).toFixed());
+        if (offset.y < window.innerHeight * 7) {
+          sticky.current.style.top = offset.y + "px";
+          sticky.current.style.left = offset.x + "px";
+        }
       }
-    },
-    [distance]
-  );
+    });
+  }, [distance]);
 
   return (
-    <>
-      <div ref={sticky} />
-      <div
-        style={{
-          top: isFixed ? `${top}px` : "",
-        }}
-        className="absolute w-full h-screen bg-green-400"
-      >
-        <h2>This is a fixed div</h2>
-      </div>
-    </>
+    <div
+      ref={sticky}
+      className="sticky top-0 left-0 w-full h-screen bg-black"
+    >
+      DUPA
+    </div>
   );
 }

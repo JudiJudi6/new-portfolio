@@ -45,7 +45,7 @@ export default function AnimateText({
           transition={{
             duration: transition,
             ease: cubicBezier(0.5, 1.1, 1, 1),
-            delay: delay + i * 0.1,
+            delay: delay,
           }}
           className={`origin-bottom bg-white w-full z-10 `}
           style={{ height: lineHeight }}
@@ -54,8 +54,6 @@ export default function AnimateText({
     }
     setElements(newElements);
   }, [lineHeight, lines, delay, transition]);
-
-  console.log(lineHeight);
 
   return (
     <motion.div className={className} style={style}>

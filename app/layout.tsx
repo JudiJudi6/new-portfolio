@@ -30,6 +30,7 @@ export default function RootLayout({
             id="app"
             className="bg-white relative flex flex-col items-center justify-center w-full h-screen overflow-x-hidden"
           >
+            {/* <div className="fixed top-0 left-0 h-screen w-full bg-green-500"></div> */}
             {children}
           </div>
         </body>

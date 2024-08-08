@@ -1,21 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { MutableRefObject, useEffect, useRef } from "react";
 import { IoArrowDownSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import FadeIn from "./ui/FadeIn";
 import AnimateText from "./ui/AnimateText";
 import SlideBars from "./ui/SlideBars";
+import { Scrollbar } from "smooth-scrollbar/scrollbar";
 
 interface SectionDescriptionProps {
   scrollY: number;
+  scrollbar: MutableRefObject<Scrollbar | null>;
 }
 
 export default function SectionDescription({
   scrollY,
+  scrollbar,
 }: SectionDescriptionProps) {
+  const sticky = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollbar.current?.addListener(function (status) {
+      const offset = status.offset;
+
+      if (sticky.current) {
+        if (offset.y < window.innerHeight * 2) {
+          sticky.current.style.top = offset.y + "px";
+          sticky.current.style.left = offset.x + "px";
+        }
+      }
+    });
+  }, [scrollY]);
+
   return (
-    <section className="h-screen w-full flex flex-col justify-between items-center  px-4  pb-2 sm:px-6 sm:pb-4 max-w-[1500px]">
+    <section
+      ref={sticky}
+      className="sticky top-0 left-0 h-screen w-full flex flex-col justify-between items-center  px-4  pb-2 sm:px-6 sm:pb-4 max-w-[1500px] "
+    >
       <div className="flex flex-col justify-end items-end gap-2 mb-1 self-end">
         <SlideBars
           delay={0}
@@ -42,11 +63,11 @@ export default function SectionDescription({
           <></> <div className="w-20 h-3 bg-black " />
         </SlideBars>{" "}
       </div>
-      <div className="flex flex-col gap-32 px-4 sm500:px-20 sm400:text-lg sm600:text-xl sm:text-2xl md900:text-3xl xl:text-4xl">
+      <div className="flex flex-col gap-20 px-4 sm500:px-20 sm400:text-lg sm600:text-xl sm:text-2xl md900:text-3xl xl:text-4xl">
         <AnimateText
           className=""
           delay={0}
-          transition={0.9}
+          transition={0.7}
           style={{ translateY: (scrollY / 7) * -1 + 100 }}
         >
           <p>
@@ -61,7 +82,7 @@ export default function SectionDescription({
         <AnimateText
           className=""
           delay={0}
-          transition={0.9}
+          transition={0.7}
           style={{ translateY: (scrollY / 7) * -1 + 100 }}
         >
           <p>
