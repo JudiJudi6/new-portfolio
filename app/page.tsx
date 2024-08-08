@@ -1,17 +1,21 @@
 "use client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import Scrollbar from "smooth-scrollbar";
 import { ScrollbarOptions } from "smooth-scrollbar/interfaces";
-import SectionDescription from "./components/SectionDescription";
-import SectionWelcome from "./components/SectionWelcome";
-import Loader from "./components/ui/Loader";
-import SectionExp from "./components/SectionExp";
 import SectionProjects from "./components/SectionProjects";
-import { useMotionValue, useMotionValueEvent } from "framer-motion";
+import SectionWelcome from "./components/SectionWelcome";
 import Background from "./components/ui/Background";
+import Loader from "./components/ui/Loader";
 
+const SectionDescription = dynamic(
+  () => import("./components/SectionDescription"),
+  {
+    ssr: false,
+  }
+);
 gsap.registerPlugin(ScrollTrigger);
 
 const options: Partial<ScrollbarOptions> = {

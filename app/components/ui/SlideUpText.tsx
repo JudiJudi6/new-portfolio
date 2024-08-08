@@ -1,6 +1,6 @@
 "use client ";
 
-import { motion } from "framer-motion";
+import { cubicBezier, motion } from "framer-motion";
 
 interface SlideUpTextProps {
   text: string;
@@ -32,7 +32,7 @@ export default function SlideUpText({
               viewport={{ once: true, amount: 0.3 }}
               transition={{
                 duration: transition,
-                ease: "easeInOut",
+                ease: cubicBezier(0.5, 1.1, 1, 1),
                 delay: idx * 0.15 + 0.2 + delay,
               }}
               className="block"
@@ -57,7 +57,7 @@ export default function SlideUpText({
               viewport={{ once: true, amount: 0.3 }}
               transition={{
                 duration: transition,
-                ease: "easeInOut",
+                ease: cubicBezier(0.5, 1.1, 1, 1),
                 delay: idx * 0.15 + 0.2 + delay,
               }}
               className={`block`}
