@@ -24,12 +24,14 @@ export default function Loader({ scrollbarRef }: LoaderProps) {
     if (app) {
       if (timer) {
         app.classList.add("hidden-app");
+        app.classList.add("flow-root");
       } else {
         app.classList.remove("hidden-app");
         scrollbarRef.current?.setPosition(0, 0);
       }
     }
-  }, [timer]);
+  }, [timer, scrollbarRef]);
+
   return (
     <motion.div
       className="fixed top-0 left-0 h-screen w-full bg-white z-[60] overflow-hidden"

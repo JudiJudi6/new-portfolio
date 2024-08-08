@@ -6,9 +6,11 @@ import Scrollbar from "smooth-scrollbar";
 import { ScrollbarOptions } from "smooth-scrollbar/interfaces";
 import SectionDescription from "./components/SectionDescription";
 import SectionWelcome from "./components/SectionWelcome";
-import Loader from "./components/Loader";
+import Loader from "./components/ui/Loader";
 import SectionExp from "./components/SectionExp";
 import SectionProjects from "./components/SectionProjects";
+import { useMotionValue, useMotionValueEvent } from "framer-motion";
+import Background from "./components/ui/Background";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,8 +19,24 @@ const options: Partial<ScrollbarOptions> = {
 };
 
 export default function Home() {
-  const [scrollPercent, setScrollPercent] = useState(0);
+  const [y, setY] = useState(0);
   const scrollbarRef = useRef<Scrollbar | null>(null);
+  const [isFixed, setIsFixed] = useState<boolean>(false);
+  const [distance, setDistance] = useState<number>(200);
+
+  useEffect(
+    function () {
+      console.log("Latest scrollY:", y);
+
+      if (y > 1470 && y < 2940) {
+        setDistance(y);
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    },
+    [y]
+  );
 
   useEffect(() => {
     const app = document.querySelector("#app");
@@ -27,37 +45,38 @@ export default function Home() {
 
       const handleScroll = () => {
         if (scrollbarRef.current) {
-          const { offset, limit } = scrollbarRef.current;
-          const totalScrollableHeight = limit.y;
+          const { offset } = scrollbarRef.current;
           const scrolledHeight = offset.y;
-          const percentScrolled =
-            (scrolledHeight / totalScrollableHeight) * 100;
-          setScrollPercent(percentScrolled);
+          setY(scrolledHeight);
         }
       };
 
       scrollbarRef.current.addListener(handleScroll);
 
+      // Call handleScroll immediately to set initial scroll value
       handleScroll();
 
       return () => {
         scrollbarRef.current?.removeListener(handleScroll);
       };
     }
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once
 
-  useEffect(() => {
-    console.log(`Scroll Percent: ${scrollPercent}%`);
-  }, [scrollPercent]);
+  // useEffect(() => {
+  //   console.log(`Scroll Percent: ${scrollPercent}%`);
+  // }, [scrollPercent]);
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center">
+    <main className=" relative flex min-h-screen w-full flex-col items-center">
       <Loader scrollbarRef={scrollbarRef} />
-      <SectionWelcome />
-      <SectionDescription />
+      <SectionWelcome scrollY={y} />
+      <SectionDescription scrollY={y} />
+      <div className="relative h-[200vh] w-full [perspective:1000px] [transform-style:preserve-3d] antialiased ">
+        <Background distance={distance} isFixed={isFixed} />
+      </div>
       {/* <SectionExp /> */}
       <SectionProjects />
-      <section></section>
+      <section className="h-screen w-full"></section>
     </main>
   );
 }

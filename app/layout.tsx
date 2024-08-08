@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Almarai } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
-import Loader from "./components/Loader";
+import Loader from "./components/ui/Loader";
 
 const almarai = Almarai({
   subsets: ["arabic"],
