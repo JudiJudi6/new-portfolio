@@ -9,7 +9,7 @@ interface FadeInProps {
   typeFrom?: "bottom" | "top";
   transition?: number;
   children: React.ReactNode;
-  once: boolean;
+  once?: boolean;
 }
 
 export default function FadeIn({
