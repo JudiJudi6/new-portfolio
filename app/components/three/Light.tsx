@@ -10,26 +10,30 @@ export default function Lights() {
   const lightRef = useRef<RectAreaLight>(null);
   const lightRef2 = useRef<RectAreaLight>(null);
   const lightRef3 = useRef<RectAreaLight>(null);
-  //   const lightRef4 = useRef<RectAreaLight>(null);
+  const lightRef4 = useRef<RectAreaLight>(null);
   //   const lightRef5 = useRef<RectAreaLight>(null);
   //   const lightRef6 = useRef<RectAreaLight>(null);
 
-  // Używamy useHelper do wizualizacji RectAreaLight
-  useHelper(lightRef3, RectAreaLightHelper, 1, "red");
+  //   useHelper(lightRef4, RectAreaLightHelper, 1, "red");
 
   useEffect(() => {
     if (
       lightRef.current &&
       lightRef2.current &&
-      lightRef3.current
-      //   lightRef4.current &&
+      lightRef3.current &&
+      lightRef4.current
       //   lightRef5.current &&
       //   lightRef6.current
     ) {
       lightRef.current.lookAt(new Vector3(2, 0.53, -2));
       lightRef2.current.lookAt(new Vector3(-2, 0.53, 2));
-      lightRef3.current.lookAt(new Vector3(0, 0, -2));
-      //   lightRef4.current.lookAt(new Vector3(0, 0, 0));
+      lightRef3.current.lookAt(new Vector3(0.45, 0, -1.951));
+      lightRef4.current.lookAt(new Vector3(0.45, 0, -1.951));
+      lightRef4.current.rotation.set(
+        0,
+        MathUtils.degToRad(180),
+        MathUtils.degToRad(45)
+      );
       //   lightRef5.current.lookAt(new Vector3(2, 0.53, -2));
       //   lightRef6.current.lookAt(new Vector3(-2, 0.53, 2));
     }
@@ -39,7 +43,7 @@ export default function Lights() {
     <>
       <rectAreaLight
         ref={lightRef}
-        color="white"
+        color={color}
         intensity={0.2}
         width={0.05}
         height={0.9}
@@ -47,7 +51,7 @@ export default function Lights() {
       />
       <rectAreaLight
         ref={lightRef2}
-        color="white"
+        color={color}
         intensity={0.8}
         width={0.05}
         height={0.9}
@@ -55,25 +59,20 @@ export default function Lights() {
       />
       <rectAreaLight
         ref={lightRef3}
-        color="white"
+        color={color}
         intensity={0.2}
         width={0.05}
         height={2.1}
-        position={[-1.25, 1.75, -1.951]}
+        position={[-1.23, 1.71, -1.951]}
       />
-      {/* <rectAreaLight
+      <rectAreaLight
         ref={lightRef4}
-        color="white"
-        intensity={0.8}
+        color={color}
+        intensity={1}
         width={0.05}
-        height={2}
-        position={[-1.944, 1.75, -1.951]}
-        rotation={[
-          MathUtils.degToRad(0),
-          MathUtils.degToRad(0),
-          MathUtils.degToRad(-45),
-        ]}
-      /> */}
+        height={2.1}
+        position={[-1.2, 1.72, -1.951]}
+      />
       {/* <rectAreaLight
         ref={lightRef5}
         color="white"
@@ -90,26 +89,6 @@ export default function Lights() {
         height={0.9}
         position={[-1.944, 0.53, -1.951]}
       /> */}
-      {/* {lightsF.map((light, index) => (
-        <pointLight
-          key={index}
-          color={color}
-          intensity={0.3}
-          distance={0.5}
-          castShadow
-          position={new Vector3(...light.position)}
-        />
-      ))} */}
-      {/* {lightsS.map((light, index) => (
-        <pointLight
-          key={index}
-          color={color}
-          intensity={0.7}
-          distance={0.5}
-          castShadow
-          position={new Vector3(...light.position)}
-        />
-      ))} */}
     </>
   );
 }
