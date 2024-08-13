@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/fiber": "^8.16.8",
+    "@react-three/drei": "^9.0.1",
+    "@react-three/fiber": "^8.17.5",
     "@types/three": "^0.167.1",
     "framer-motion": "^11.3.22",
+    "framer-motion-3d": "^11.2.0",
     "gsap": "^3.12.5",
     "newportfolio": "file:",
     "next": "14.2.5",
@@ -19,7 +21,7 @@
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "smooth-scrollbar": "^8.8.4",
-    "three": "^0.167.1"
+    "three": "^0.137.5"
   },
   "devDependencies": {
     "@types/node": "^20",

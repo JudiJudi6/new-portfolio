@@ -59,22 +59,23 @@ export default function Home() {
         scrollbarRef.current?.setMomentum(0, 0);
       }
     });
+    console.log(y);
   }, [y]);
 
   return (
     <main className=" relative flex min-h-screen w-full flex-col items-center ">
-      <Loader scrollbarRef={scrollbarRef} />
+      {/* <Loader scrollbarRef={scrollbarRef} />
       <SectionWelcome scrollY={y} />
-      <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
+      <SectionDescription scrollY={y} scrollbar={scrollbarRef} /> */}
       <Background distance={y} scrollbar={scrollbarRef} />
-      <div className="z-10 translate-y-[-100vh] text-white">
+      {/* <div className="z-10 translate-y-[-100vh] text-white">
         <SectionExp />
         <SectionProjects />
         <SectionProjects />
         <SectionProjects />
         <SectionProjects />
-      </div>
-      <SectionFooter />
+      </div> */}
+      {/* <SectionFooter scrollY={y} /> */}
     </main>
   );
 }
