@@ -44,7 +44,7 @@ export default function Lights() {
       <rectAreaLight
         ref={lightRef}
         color={color}
-        intensity={0.2}
+        intensity={3}
         width={0.05}
         height={0.9}
         position={[-1.951, 0.53, -1.944]}
@@ -52,7 +52,7 @@ export default function Lights() {
       <rectAreaLight
         ref={lightRef2}
         color={color}
-        intensity={0.8}
+        intensity={10}
         width={0.05}
         height={0.9}
         position={[-1.944, 0.53, -1.951]}
@@ -60,7 +60,7 @@ export default function Lights() {
       <rectAreaLight
         ref={lightRef3}
         color={color}
-        intensity={0.2}
+        intensity={3}
         width={0.05}
         height={2.1}
         position={[-1.23, 1.71, -1.951]}
@@ -68,7 +68,7 @@ export default function Lights() {
       <rectAreaLight
         ref={lightRef4}
         color={color}
-        intensity={1}
+        intensity={10}
         width={0.05}
         height={2.1}
         position={[-1.2, 1.72, -1.951]}

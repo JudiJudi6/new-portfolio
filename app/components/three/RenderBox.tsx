@@ -24,7 +24,7 @@ export default function RenderBox({
   x,
   y,
   z,
-  color,
+  color ="#757575",
 }: RenderBoxProps) {
   return (
     <mesh

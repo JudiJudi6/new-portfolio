@@ -36,7 +36,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
         }}
         shadows={true}
       >
-        <RenderBox x={4} y={0.1} z={4} />
+        <RenderBox x={4} y={0.1} z={4}/>
         <RenderBox x={0.1} y={1} z={4} positionX={-2} positionY={0.5} />
         <RenderBox
           x={0.1}
@@ -50,7 +50,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
         <RenderBox x={4} y={2.5} z={0.1} positionY={1.25} positionZ={-2} />
         {/* <RenderBox x={0.001} y={1} z={0.01} positionY={0.5} positionZ={-1.945} positionX={-1.9} /> */}
        
-        <ambientLight intensity={0.01} />
+        <ambientLight intensity={0.1} />
         <Light />
         {/* <directionalLight
           castShadow={true}
