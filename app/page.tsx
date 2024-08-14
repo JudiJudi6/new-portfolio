@@ -63,19 +63,19 @@ export default function Home() {
   }, [y]);
 
   return (
-    <main className=" relative flex min-h-screen w-full flex-col items-center ">
-      {/* <Loader scrollbarRef={scrollbarRef} />
+    <main className=" relative flex min-h-[800vh] w-full flex-col items-center ">
+      <Loader scrollbarRef={scrollbarRef} />
       <SectionWelcome scrollY={y} />
-      <SectionDescription scrollY={y} scrollbar={scrollbarRef} /> */}
+      <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
       <Background distance={y} scrollbar={scrollbarRef} />
-      {/* <div className="z-10 translate-y-[-100vh] text-white">
+      <div className="absolute top-[200vh] left-0 w-full z-30  text-white">
         <SectionExp />
         <SectionProjects />
         <SectionProjects />
         <SectionProjects />
         <SectionProjects />
-      </div> */}
-      {/* <SectionFooter scrollY={y} /> */}
+      </div>
+      <SectionFooter scrollY={y} />
     </main>
   );
 }
