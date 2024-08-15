@@ -4,6 +4,8 @@ import "./globals.css";
 import Head from "next/head";
 import Loader from "./components/ui/Loader";
 
+
+
 const almarai = Almarai({
   subsets: ["arabic"],
   weight: ["300", "400", "700", "800"],

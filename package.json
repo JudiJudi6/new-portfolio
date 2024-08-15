@@ -11,7 +11,9 @@
   "dependencies": {
     "@react-three/drei": "^9.0.1",
     "@react-three/fiber": "^8.17.5",
-    "@types/three": "^0.167.1",
+    "@theatre/core": "^0.5.1",
+    "@theatre/r3f": "^0.5.1",
+    "@theatre/studio": "^0.5.1",
     "framer-motion": "^11.3.22",
     "framer-motion-3d": "^11.2.0",
     "gsap": "^3.12.5",
@@ -27,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.167.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

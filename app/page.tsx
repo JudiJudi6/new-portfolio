@@ -1,4 +1,5 @@
 "use client";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
@@ -9,8 +10,15 @@ import SectionExp from "./components/SectionExp";
 import SectionFooter from "./components/SectionFooter";
 import SectionProjects from "./components/SectionProjects";
 import SectionWelcome from "./components/SectionWelcome";
+import SectionEnd from "./components/SectionEnd";
 import Background from "./components/ui/Background";
 import Loader from "./components/ui/Loader";
+
+import studio from "@theatre/studio";
+import extension from "@theatre/r3f/dist/extension";
+
+studio.initialize();
+studio.extend(extension);
 
 const SectionDescription = dynamic(
   () => import("./components/SectionDescription"),
@@ -74,6 +82,7 @@ export default function Home() {
         <SectionProjects />
         <SectionProjects />
         <SectionProjects />
+        {/* <SectionEnd scrollY={y} scrollbar={scrollbarRef}/> */}
       </div>
       <SectionFooter scrollY={y} />
     </main>
