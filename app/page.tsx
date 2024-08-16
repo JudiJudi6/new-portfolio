@@ -15,6 +15,7 @@ import Background from "./components/ui/Background";
 import Loader from "./components/ui/Loader";
 
 import studio from "@theatre/studio";
+// @ts-ignore
 import extension from "@theatre/r3f/dist/extension";
 
 studio.initialize();

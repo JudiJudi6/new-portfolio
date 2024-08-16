@@ -18,10 +18,10 @@ export default function MonitorScreen() {
   }, [texture]);
   return (
     <>
-      {/* <mesh position={[-1.1, 1, -1.837]} receiveShadow castShadow={true}>
+      <mesh position={[-1.1, 1, -1.837]} receiveShadow castShadow={true}>
         <boxGeometry args={[0.5, 0.2, 0.001]} />
         <meshBasicMaterial map={texture} />
-      </mesh> */}
+      </mesh>
     </>
   );
 }
