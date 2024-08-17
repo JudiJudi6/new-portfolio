@@ -1,46 +1,24 @@
 import { lerp } from "@/utils/mathHelpers"; // Zakładam, że masz funkcję lerp
 import { useFrame } from "@react-three/fiber";
-import React from "react";
+import { ISheet, val } from "@theatre/core";
+import React, { useMemo } from "react";
 import { Vector3 } from "three";
 
 interface CameraProps {
   scrollY: number;
+  sheet: ISheet;
 }
 
-export default function Camera({ scrollY }: CameraProps) {
-  const height = window.innerHeight;
+export default function Camera({ scrollY, sheet }: CameraProps) {
+  const sequenceLength = 4;
+  useFrame(() => {
+    // Zakładając, że scrollY jest większe niż 2 * window.innerHeight
+    const startScroll = scrollY - 2 * window.innerHeight; // Normalizujemy scrollY
+    const position = (startScroll / (4 * window.innerHeight)) * sequenceLength;
 
-  // Definiujemy kluczowe punkty animacji
-  const points = [
-    {
-      start: height * 3,
-      end: height * 4,
-      from: new Vector3(-1.1, 1, -0.837),
-      to: new Vector3(-1.1, 1, -1.83),
-    },
-    // Dodaj inne punkty animacji tutaj
-  ];
-
-  useFrame((state) => {
-    // Ustawienia domyślne kamery
-    let position = new Vector3(-1.1, 1, -0.837);
-    let target = new Vector3(-1.1, 1, -1.83);
-
-    // Sprawdzamy, w którym zakresie przewijania jesteśmy
-    points.forEach((point) => {
-      if (scrollY >= point.start && scrollY < point.end) {
-        // Obliczamy interpolację
-        const t = (scrollY - point.start) / (point.end - point.start);
-        position = lerp(point.from, point.to, t);
-        target = lerp(point.from, point.to, t);
-      }
-    });
-
-    // Aktualizujemy kamerę
-    state.camera.position.copy(position);
-    state.camera.lookAt(target);
-    state.camera.updateProjectionMatrix();
+    // Ustawiamy pozycję sekwencji w zależności od przewijania
+    sheet.sequence.position = position;
   });
 
-  return <></>;
+  return null; // Komponent nie renderuje nic
 }

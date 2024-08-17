@@ -1,23 +1,21 @@
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Scrollbar } from "smooth-scrollbar/scrollbar";
-import { OrbitControls, OrbitControlsProps } from "@react-three/drei";
-import RenderBox from "../three/RenderBox";
 import AxesHelper from "../three/AxesHelper";
-import Light from "../three/Light";
-import Render3D from "../three/Render3D";
-import MonitorLight from "../three/MonitorLight";
 import LampLight from "../three/LampLight";
+import Light from "../three/Light";
+import MonitorLight from "../three/MonitorLight";
 import MonitorScreen from "../three/MonitorScreen";
-import Camera from "../three/Camera";
-// @ts-ignore
+import Render3D from "../three/Render3D";
+import RenderBox from "../three/RenderBox";
+import { getProject } from "@theatre/core";
 import {
   editable as e,
-  SheetProvider,
   PerspectiveCamera,
-  OrthographicCamera,
+  SheetProvider,
+  // @ts-ignore
 } from "@theatre/r3f";
-import { getProject } from "@theatre/core";
+import Camera from "../three/Camera";
 
 interface BackgroundProps {
   distance: number;
@@ -31,8 +29,9 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
   const [lamp, setLamp] = useState(false);
   const [leds, setLeds] = useState(true);
 
+  // demoSheet.sequence.play();
   useEffect(() => {
-    scrollbar.current?.addListener(function (status) {
+    scrollbar.current?.addListener((status) => {
       const offset = status.offset;
 
       if (sticky.current) {
@@ -44,6 +43,20 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
     });
   }, [distance]);
 
+  // useEffect(() => {
+  //   scrollbar.current?.addListener(function (status) {
+  //     const offset = status.offset;
+
+  //     if (sticky.current) {
+  //       if (offset.y < window.innerHeight * 6) {
+  //         sticky.current.style.top = offset.y + "px";
+  //         sticky.current.style.left = offset.x + "px";
+  //       }
+
+  //     }
+  //   });
+  // }, [distance]);
+
   return (
     <div ref={sticky} className="sticky top-0 left-0 w-full h-screen bg-black">
       <Canvas shadows={true} className="w-full h-full" orthographic>
@@ -51,11 +64,12 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
           <PerspectiveCamera
             theatreKey="Camera"
             makeDefault
-            position={[-1, 1.2, -1]}
+            position={[-1.1, 1, -1]}
             fov={90}
-            lookAt={[-1, 1, -1.837]}
+            lookAt={[-1.1, 1, -1.837]}
           />
-          <e.group theatreKey="Group">
+          <Camera scrollY={distance} sheet={demoSheet} />
+          <e.group theatreKey="Room">
             <RenderBox x={4} y={0.1} z={4} />
             <RenderBox x={0.1} y={1} z={4} positionX={-2} positionY={0.5} />
             <RenderBox

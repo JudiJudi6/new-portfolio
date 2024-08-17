@@ -9,6 +9,10 @@ import {
   RectAreaLight,
   Vector3,
 } from "three";
+import {
+  editable as e,
+  // @ts-ignore
+} from "@theatre/r3f";
 
 interface LightsProps {
   leds: boolean;
@@ -54,8 +58,9 @@ export default function Lights({ leds }: LightsProps) {
 
   return (
     <>
-      {leds && (
-        <>
+      {/* {leds && ( */}
+      <>
+        <e.group theatreKey="Leds">
           <rectAreaLight
             ref={lightRef}
             color={color}
@@ -88,8 +93,9 @@ export default function Lights({ leds }: LightsProps) {
             height={2.1}
             position={[-1.2, 1.72, -1.951]}
           />
-        </>
-      )}
+        </e.group>
+      </>
+      {/* )} */}
       {/* <directionalLight
         ref={lightDir}
         color="white"
