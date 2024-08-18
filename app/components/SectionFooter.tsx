@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SectionFooter({ scrollY }: { scrollY: number }) {
   return (
-    <section className="absolute bottom-0 left-0 h-screen w-full flex flex-col justify-between items-center px-4 pt-8 pb-2 sm:px-6 sm:pb-4 max-w-[1500px]">
+    <section className="absolute bottom-0 left-0 h-screen w-full flex flex-col justify-between items-center px-4 pt-8 pb-2 sm:px-6 sm:pb-4 max-w-[1500px] z-50 bg-white">
       <div></div>
       <p className="max-w-[350px] text-right sm:text-lg self-end">
         In my free time, I like Lorem ipsum dolor sit amet consectetur

@@ -2,7 +2,7 @@ import { ThreeEvent, useLoader } from "@react-three/fiber";
 import React, { Suspense, useRef, useState } from "react";
 import { Color, MathUtils, Mesh } from "three";
 import { Clone } from "@react-three/drei";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 interface ModelProps {
   id?: string;

@@ -17,6 +17,11 @@ import Loader from "./components/ui/Loader";
 import studio from "@theatre/studio";
 // @ts-ignore
 import extension from "@theatre/r3f/dist/extension";
+import SectionExpDesc from "./components/SectionExpDesc";
+import SectionProjectsDesc from "./components/SectionProjectsDesc";
+import SectionSkills from "./components/SectionSkills";
+import SectionSkillsDesc from "./components/SectionSkillsDesc";
+import SectionOut from "./components/SectionOut";
 
 studio.initialize();
 studio.extend(extension);
@@ -60,7 +65,7 @@ export default function Home() {
       };
     }
   }, []);
-  
+
   // useEffect(() => {
   //   let orientationSnap = 0;
 
@@ -178,18 +183,19 @@ export default function Home() {
   }, [y]);
 
   return (
-    <main className=" relative flex min-h-[800vh] w-full flex-col items-center ">
+    <main className=" relative flex min-h-[1000vh] w-full flex-col items-center ">
       <Loader scrollbarRef={scrollbarRef} />
       <SectionWelcome scrollY={y} />
       <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
       <Background distance={y} scrollbar={scrollbarRef} />
       <div className="absolute top-[200vh] left-0 w-full z-30  text-white">
         <SectionExp />
+        <SectionExpDesc />
         <SectionProjects />
-        <SectionProjects />
-        <SectionProjects />
-        <SectionProjects />
-        {/* <SectionEnd scrollY={y} scrollbar={scrollbarRef}/> */}
+        <SectionProjectsDesc />
+        <SectionSkills />
+        <SectionSkillsDesc />
+        <SectionOut />
       </div>
       <SectionFooter scrollY={y} />
     </main>

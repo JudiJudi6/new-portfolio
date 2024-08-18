@@ -35,7 +35,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
       const offset = status.offset;
 
       if (sticky.current) {
-        if (offset.y < window.innerHeight * 6) {
+        if (offset.y < window.innerHeight * 9) {
           sticky.current.style.top = offset.y + "px";
           sticky.current.style.left = offset.x + "px";
         }
@@ -179,7 +179,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
             {/* <directionalLight
           castShadow={true}
           position={[5, 100, 0]}
-          intensity={1}
+          intensity={0.1}
           color="#fff"
           shadow-mapSize-width={20}
           shadow-mapSize-height={20}
