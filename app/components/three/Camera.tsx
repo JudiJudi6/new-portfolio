@@ -43,7 +43,7 @@ export default function Camera({ scrollY, sheet }: CameraProps) {
       const cameraPositionFromTheatre = camera.position;
 
       const targetPosition = new Vector3(
-        cameraPositionFromTheatre.x + mousePos.x * 0.1,
+        cameraPositionFromTheatre.x + mousePos.x * 0.2,
         cameraPositionFromTheatre.y,
         cameraPositionFromTheatre.z
       );
