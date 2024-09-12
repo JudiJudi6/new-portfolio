@@ -20,24 +20,6 @@ export default function Camera({ scrollY, sheet }: CameraProps) {
   const animationScripts: { start: number; end: number; func: () => void }[] =
     [];
 
-  // function playScrollAnimations() {
-  //   animationScripts.forEach((a) => {
-  //     if (scrollPercent >= a.start && scrollPercent < a.end) {
-  //       a.func();
-  //     }
-  //   });
-  // }
-
-  // animationScripts.push({
-  //   start: 0,
-  //   end: 60,
-  //   func: () => {
-  //     camera.position.set(0, 1, 2);
-  //     // cube.rotation.z = lerp(0, Math.PI, scalePercent(scrollPercent, 40, 60));
-  //     //console.log(cube.rotation.z)
-  //   },
-  // });
-
   useEffect(
     function () {
       const cameraPositionFromTheatre = camera.position;

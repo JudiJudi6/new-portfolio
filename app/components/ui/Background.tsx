@@ -59,7 +59,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
 
   return (
     <div ref={sticky} className="sticky top-0 left-0 w-full h-screen bg-black">
-      <Canvas shadows={true} className="w-full h-full" orthographic>
+      {/* <Canvas shadows={true} className="w-full h-full" orthographic>
         <SheetProvider sheet={demoSheet}>
           <PerspectiveCamera
             theatreKey="Camera"
@@ -194,10 +194,10 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
               // minPolarAngle={0}
               // maxPolarAngle={Math.PI / 2 - 0.1}
             /> */}
-            <AxesHelper />
+            {/* <AxesHelper />
           </e.group>
         </SheetProvider>
-      </Canvas>
+      </Canvas> */} 
     </div>
   );
 }
