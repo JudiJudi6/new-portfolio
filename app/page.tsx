@@ -23,19 +23,15 @@ import SectionSkills from "./components/SectionSkills";
 import SectionSkillsDesc from "./components/SectionSkillsDesc";
 import SectionOut from "./components/SectionOut";
 
-studio.initialize();
-studio.extend(extension);
-
 const SectionDescription = dynamic(
   () => import("./components/SectionDescription"),
   {
     ssr: false,
   }
 );
-gsap.registerPlugin(ScrollTrigger);
 
 const options: Partial<ScrollbarOptions> = {
-  damping: 0.09,
+  damping: 0.05,
 };
 
 export default function Home() {
@@ -65,111 +61,6 @@ export default function Home() {
       };
     }
   }, []);
-
-  // useEffect(() => {
-  //   let orientationSnap = 0;
-
-  //   const handleWheel = (event: WheelEvent) => {
-  //     if (y > window.innerHeight) {
-  //       if (event.deltaY > 0) {
-  //         orientationSnap = 1;
-  //       } else if (event.deltaY < 0) {
-  //         orientationSnap = -1;
-  //       }
-
-  //       // Aktualizuj stan snap tylko, gdy orientationSnap nie jest zerem
-  //       setSnap((prevSnap) => {
-  //         const newSnap = prevSnap + orientationSnap;
-
-  //         // Obsługuj snapowanie tylko w określonych przedziałach
-  //         if (newSnap === -1) {
-  //           scrollbarRef.current?.scrollTo(0, window.innerHeight, 600);
-  //         } else if (newSnap === 0) {
-  //           scrollbarRef.current?.scrollTo(0, 2 * window.innerHeight, 600);
-  //         } else if (newSnap === 1) {
-  //           scrollbarRef.current?.scrollTo(0, 3 * window.innerHeight, 1000);
-  //         }
-
-  //         // Zwróć nową wartość snap, ale ogranicz ją do przedziału -1, 0, 1
-  //         return Math.max(-1, Math.min(newSnap, 1));
-  //       });
-  //     }
-  //   };
-
-  //   console.log(snap);
-  //   window.addEventListener("wheel", handleWheel);
-
-  //   return () => {
-  //     window.removeEventListener("wheel", handleWheel);
-  //   };
-  // }, [y]);
-
-  // useEffect(() => {
-  //   let startY = 0;
-  //   let endY = 0;
-
-  //   const handleTouchStart = (event: TouchEvent) => {
-  //     if (event.touches.length === 1) {
-  //       startY = event.touches[0].clientY;
-  //     }
-  //   };
-
-  //   const handleTouchMove = (event: TouchEvent) => {
-  //     if (event.touches.length === 1) {
-  //       endY = event.touches[0].clientY;
-  //       const deltaY = endY - startY;
-
-  //       // Przewijanie w dół
-  //       if (deltaY > 30) {
-  //         // Możesz dostosować wartość 30 do własnych potrzeb
-  //         setSnap((prevSnap) => {
-  //           const newSnap = Math.max(prevSnap - 1, -1);
-  //           if (newSnap === -1) {
-  //             scrollbarRef.current?.scrollTo(0, window.innerHeight, 600);
-  //           } else if (newSnap === 0) {
-  //             scrollbarRef.current?.scrollTo(0, 2 * window.innerHeight, 600);
-  //           } else if (newSnap === 1) {
-  //             scrollbarRef.current?.scrollTo(
-  //               0,
-  //               3 * window.innerHeight + window.innerHeight / 2,
-  //               1000
-  //             );
-  //           }
-  //           return newSnap;
-  //         });
-  //         startY = endY; // Resetuj startY
-  //       }
-  //       // Przewijanie w górę
-  //       else if (deltaY < -30) {
-  //         // Możesz dostosować wartość -30 do własnych potrzeb
-  //         setSnap((prevSnap) => {
-  //           const newSnap = Math.min(prevSnap + 1, 1);
-  //           if (newSnap === -1) {
-  //             scrollbarRef.current?.scrollTo(0, window.innerHeight, 600);
-  //           } else if (newSnap === 0) {
-  //             scrollbarRef.current?.scrollTo(0, 2 * window.innerHeight, 600);
-  //           } else if (newSnap === 1) {
-  //             scrollbarRef.current?.scrollTo(
-  //               0,
-  //               3 * window.innerHeight + window.innerHeight / 2,
-  //               1000
-  //             );
-  //           }
-  //           return newSnap;
-  //         });
-  //         startY = endY; // Resetuj startY
-  //       }
-  //     }
-  //   };
-
-  //   window.addEventListener("touchstart", handleTouchStart);
-  //   window.addEventListener("touchmove", handleTouchMove);
-
-  //   return () => {
-  //     window.removeEventListener("touchstart", handleTouchStart);
-  //     window.removeEventListener("touchmove", handleTouchMove);
-  //   };
-  // }, [y, snap]);
 
   useEffect(() => {
     let offset: Data2d;
