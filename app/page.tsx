@@ -10,7 +10,6 @@ import SectionExp from "./components/SectionExp";
 import SectionFooter from "./components/SectionFooter";
 import SectionProjects from "./components/SectionProjects";
 import SectionWelcome from "./components/SectionWelcome";
-import SectionEnd from "./components/SectionEnd";
 import Background from "./components/ui/Background";
 import Loader from "./components/ui/Loader";
 
@@ -70,6 +69,16 @@ export default function Home() {
       if (Math.abs(offset.y - innerHeight) <= 2) {
         scrollbarRef.current?.setMomentum(0, 0);
       }
+
+      if (Math.abs(offset.y - 2 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 2 * innerHeight + 1);
+      }
+
+      if (Math.abs(offset.y - 3 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 3 * innerHeight + 1);
+      }
     });
   }, [y]);
 
@@ -80,7 +89,7 @@ export default function Home() {
       <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
       <Background distance={y} scrollbar={scrollbarRef} />
       <div className="absolute top-[200vh] left-0 w-full z-30  text-white">
-        <SectionExp />
+        <SectionExp scrollY={y} />
         <SectionExpDesc />
         <SectionProjects />
         <SectionProjectsDesc />
