@@ -24,7 +24,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" type="image/x-icon" href="/icon.svg" />
       </Head>
-      <html lang="en" className="text-base xl:text-lg 2xl:text-xl">
+      <html lang="en" className="text-base xl:text-lg 2xl:text-lg">
         <body className={almarai.className}>
           <div
             id="app"
