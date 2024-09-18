@@ -4,7 +4,7 @@ import { cubicBezier, motion } from "framer-motion";
 
 interface SlideUpTextProps {
   text: string;
-  as: "p" | "h1";
+  as: "p" | "h1" | "h3";
   className?: string;
   delay: number;
   typeFrom?: "bottom" | "top";
