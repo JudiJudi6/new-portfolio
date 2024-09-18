@@ -35,7 +35,7 @@ export default function SectionDescription({
   return (
     <section
       ref={sticky}
-      className="sticky top-0 left-0 h-screen w-full flex flex-col justify-between items-center  px-4  pb-2 sm:px-6 sm:pb-4 max-w-[1500px] "
+      className="sticky top-0 left-0 h-screen w-full flex flex-col justify-between items-center  px-4 py-2 pb-2 sm:px-6 sm:pb-4 max-w-[1500px] "
     >
       <div className="flex flex-col justify-end items-end gap-2 mb-1 self-end">
         <SlideBars
@@ -63,7 +63,7 @@ export default function SectionDescription({
           <></> <div className="w-20 h-3 bg-black " />
         </SlideBars>{" "}
       </div>
-      <div className="flex flex-col gap-20 px-4 sm500:px-20 sm400:text-lg sm600:text-xl sm:text-2xl md900:text-3xl xl:text-4xl">
+      <div className="flex flex-col gap-20 px-4 sm500:px-20 sm400:text-lg sm600:text-xl sm:text-2xl md900:text-3xl">
         <AnimateText
           className=""
           delay={0}
