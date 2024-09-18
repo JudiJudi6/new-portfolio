@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export default function SectionWelcome({ scrollY }: { scrollY: number }) {
   return (
-    <section className="h-screen w-full flex flex-col justify-between items-center px-4 pt-8 pb-2 sm:px-6 sm:pb-4 max-w-[1500px]">
+    <section className="h-screen w-full flex flex-col justify-between items-center px-4 pt-8 sm:px-6 max-w-[1500px]">
       <div className="flex justify-between items-center w-full">
         <SlideBars typeFrom="left" delay={2.1}>
           <div className="w-3 h-3 bg-black block"></div>
@@ -40,7 +40,7 @@ export default function SectionWelcome({ scrollY }: { scrollY: number }) {
           <FadeIn
             delay={2.1}
             typeFrom="bottom"
-            className=" relative tracking-wide sm500:text-lg sm:uppercase z-10"
+            className="relative tracking-wide sm500:text-lg sm:uppercase z-10"
           >
             Łukasz Michnik
           </FadeIn>
@@ -56,7 +56,7 @@ export default function SectionWelcome({ scrollY }: { scrollY: number }) {
         </div>
       </motion.div>
       <div className="text-[13px] lg:text-sm w-full flex justify-between items-end gap-5">
-        <div className="flex gap-5">
+        <div className="flex gap-5 pb-2">
           <FadeIn delay={2} typeFrom="bottom">
             <Link
               href="https://github.com/JudiJudi6"
