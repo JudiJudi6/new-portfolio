@@ -1,4 +1,6 @@
-import { MutableRefObject, useEffect, useRef } from "react";
+"use client";
+
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Scrollbar } from "smooth-scrollbar/scrollbar";
 // import SlideBars from "./SlideBars";
 import SlideBarsBgc from "./SlideBarsBgc";
@@ -11,13 +13,28 @@ interface BackgroundProps {
 
 export default function Background({ distance, scrollbar }: BackgroundProps) {
   const sticky = useRef<HTMLDivElement>(null);
-  const windowPart = window.innerHeight / 5;
-  const startAnimationFirstBars =
-    distance > window.innerHeight * 1 + 2 * windowPart &&
-    distance < window.innerHeight * 3 - 2 * windowPart;
-  const startAnimationSecondBars =
-    distance > window.innerHeight * 3 - 2 * windowPart &&
-    distance < window.innerHeight * 4 - windowPart;
+  const [windowPart, setWindowPart] = useState(0);
+  const [startAnimationFirstBars, setStartAnimationFirstBars] = useState(false);
+  const [startAnimationSecondBars, setStartAnimationSecondBars] =
+    useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const windowHeight = window.innerHeight;
+      const windowPartCalc = windowHeight / 5;
+      setWindowPart(windowPartCalc);
+
+      const firstBars =
+        distance > windowHeight * 1 + 2 * windowPartCalc &&
+        distance < windowHeight * 3 - 2 * windowPartCalc;
+      const secondBars =
+        distance > windowHeight * 3 - 2 * windowPartCalc &&
+        distance < windowHeight * 4 - windowPartCalc;
+
+      setStartAnimationFirstBars(firstBars);
+      setStartAnimationSecondBars(secondBars);
+    }
+  }, [distance]);
 
   useEffect(() => {
     scrollbar.current?.addListener((status) => {
@@ -37,10 +54,10 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
       ref={sticky}
       className="sticky top-0 left-0 w-full h-[calc(100vh+4px)] bg-black"
     >
-      <div className="max-w-[1500px] w-full h-full flex-col justify-between items-center px-4 py-4 sm:px-6 sm:py-6 mx-auto hidden lg:flex">
+      <div className="max-w-[1500px] w-full h-full flex-col justify-between items-center px-4 py-4 sm:px-6 sm:py-6 mx-auto flex">
         <AnimatePresence mode="wait">
           {startAnimationFirstBars && (
-            <div className="flex flex-col justify-end items-end gap-2 mb-1 w-full">
+            <div className="flex-col justify-end items-end gap-2 mb-1 w-full hidden lg:flex">
               <SlideBarsBgc
                 delay={0}
                 typeFrom="right"
@@ -76,14 +93,14 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
         <div></div>
         <AnimatePresence mode="wait">
           {startAnimationSecondBars && (
-            <div className="flex flex-col justify-end items-start gap-2 mb-1 w-full">
+            <div className="flex-col justify-end items-start gap-2 mb-1 w-full hidden sm:flex">
               <SlideBarsBgc
                 delay={0.1}
                 typeFrom="left"
                 className="flex justify-center items-center gap-3"
                 add="4"
               >
-                <div className="w-16 h-3 bg-white hidden md900:block" />
+                <div className="w-16 h-3 bg-white" />
                 <></>
               </SlideBarsBgc>
               <SlideBarsBgc
@@ -92,7 +109,7 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
                 className="flex justify-center items-center gap-3"
                 add="5"
               >
-                <div className="w-6 h-3 bg-white hidden md900:block" />
+                <div className="w-6 h-3 bg-white" />
                 <div className="w-12 h-3 bg-white" />
               </SlideBarsBgc>
               <SlideBarsBgc

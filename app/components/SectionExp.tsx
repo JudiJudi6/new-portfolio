@@ -15,7 +15,7 @@ export default function SectionExp({ scrollY }: { scrollY: number }) {
       >
         <motion.p
           className="text-sm sm500:text-lg font-normal  "
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.9 }}
           initial={{ translateX: "8%", opacity: 0 }}
           whileInView={{ translateX: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -24,7 +24,7 @@ export default function SectionExp({ scrollY }: { scrollY: number }) {
         </motion.p>
         <motion.div
           className="flex justify-center items-end"
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.9 }}
           initial={{ translateX: "8%", opacity: 0 }}
           whileInView={{ translateX: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
