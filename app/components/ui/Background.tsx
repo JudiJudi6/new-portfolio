@@ -13,7 +13,6 @@ interface BackgroundProps {
 
 export default function Background({ distance, scrollbar }: BackgroundProps) {
   const sticky = useRef<HTMLDivElement>(null);
-  const [windowPart, setWindowPart] = useState(0);
   const [startAnimationFirstBars, setStartAnimationFirstBars] = useState(false);
   const [startAnimationSecondBars, setStartAnimationSecondBars] =
     useState(false);
@@ -22,14 +21,13 @@ export default function Background({ distance, scrollbar }: BackgroundProps) {
     if (typeof window !== "undefined") {
       const windowHeight = window.innerHeight;
       const windowPartCalc = windowHeight / 5;
-      setWindowPart(windowPartCalc);
 
       const firstBars =
         distance > windowHeight * 1 + 2 * windowPartCalc &&
         distance < windowHeight * 3 - 2 * windowPartCalc;
       const secondBars =
         distance > windowHeight * 3 - 2 * windowPartCalc &&
-        distance < windowHeight * 4 - windowPartCalc;
+        distance < windowHeight * 3 +  windowPartCalc;
 
       setStartAnimationFirstBars(firstBars);
       setStartAnimationSecondBars(secondBars);
