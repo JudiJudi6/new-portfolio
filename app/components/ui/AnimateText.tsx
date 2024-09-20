@@ -2,13 +2,16 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cubicBezier, motion, MotionStyle } from "framer-motion";
+import clsx from "clsx";
 
 interface AnimateTextProps {
   children: React.ReactNode;
   className: string;
   transition: number;
   delay: number;
-  style: MotionStyle;
+  style?: MotionStyle;
+  bgColor?: "white" | "black";
+  once?: boolean;
 }
 
 export default function AnimateText({
@@ -17,6 +20,8 @@ export default function AnimateText({
   delay,
   transition,
   style,
+  bgColor = "white",
+  once = true,
 }: AnimateTextProps) {
   const divRef = useRef<HTMLDivElement>(null);
   const [lineHeight, setLineHeight] = useState(0);
@@ -41,19 +46,22 @@ export default function AnimateText({
           key={i}
           initial={{ scaleY: 1 }}
           whileInView={{ scaleY: 0 }}
-          viewport={{ once: true, amount: 0.9 }}
+          viewport={{ once: once, amount: 0.9 }}
           transition={{
             duration: transition,
             ease: cubicBezier(0.5, 1.1, 1, 1),
             delay: delay,
           }}
-          className={`origin-bottom bg-white w-full z-10 `}
+          className={clsx(
+            "origin-bottom  w-full z-10",
+            bgColor === "white" ? "bg-white" : "bg-black"
+          )}
           style={{ height: lineHeight }}
         />
       );
     }
     setElements(newElements);
-  }, [lineHeight, lines, delay, transition]);
+  }, [lineHeight, lines, delay, transition, bgColor]);
 
   return (
     <motion.div className={className} style={style}>
