@@ -9,7 +9,7 @@ const MotionLink = motion(Link);
 
 export default function SectionExpDesc() {
   return (
-    <section className="h-screen w-full flex flex-col justify-between items-center px-4 pt-8 pb-2 sm400:px-10 sm600:px-20 sm:px-32 sm:pb-4 max-w-[1500px]">
+    <section className="h-screen w-full flex flex-col justify-between items-center px-4 pt-8 pb-2 sm400:px-10 sm600:px-20 sm:px-32 sm:pb-4 max-w-[1500px] mx-auto">
       <div></div>
       <div className="sm400:w-full flex justify-center items-end flex-col">
         <ExpItem
