@@ -59,7 +59,7 @@ export default function Home() {
         scrollbarRef.current?.removeListener(handleScroll);
       };
     }
-  }, []);
+  }, [ scrollbarRef ]);
 
   useEffect(() => {
     let offset: Data2d;
@@ -78,6 +78,11 @@ export default function Home() {
       if (Math.abs(offset.y - 3 * innerHeight) <= 1) {
         scrollbarRef.current?.setMomentum(0, 0);
         scrollbarRef.current?.scrollTo(0, 3 * innerHeight + 1);
+      }
+
+      if (Math.abs(offset.y - 4 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 4 * innerHeight + 1);
       }
     });
   }, [y]);
