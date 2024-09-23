@@ -59,7 +59,7 @@ export default function Home() {
         scrollbarRef.current?.removeListener(handleScroll);
       };
     }
-  }, [ scrollbarRef ]);
+  }, [scrollbarRef]);
 
   useEffect(() => {
     let offset: Data2d;
@@ -84,6 +84,21 @@ export default function Home() {
         scrollbarRef.current?.setMomentum(0, 0);
         scrollbarRef.current?.scrollTo(0, 4 * innerHeight + 1);
       }
+
+      if (Math.abs(offset.y - 5 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 5 * innerHeight + 1);
+      }
+
+      if (Math.abs(offset.y - 6 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 6 * innerHeight + 1);
+      }
+
+      if (Math.abs(offset.y - 7 * innerHeight) <= 1) {
+        scrollbarRef.current?.setMomentum(0, 0);
+        scrollbarRef.current?.scrollTo(0, 7 * innerHeight + 1);
+      }
     });
   }, [y]);
 
@@ -97,7 +112,7 @@ export default function Home() {
         <SectionExp scrollY={y} />
         <SectionExpDesc />
         <SectionProjects />
-        <SectionProjectsDesc />
+        <SectionProjectsDesc scrollY={y} />
         <SectionSkills />
         <SectionSkillsDesc />
         <SectionOut />
