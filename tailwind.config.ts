@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         white: "#ede8e4",
+        whiteDarker: "#e0d8d3",
+        whiteDarkest: "#d3c8c3",
       },
       screens: {
         sm400: "400px",
