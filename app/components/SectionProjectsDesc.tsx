@@ -94,7 +94,7 @@ export default function SectionProjectsDesc({
   }, [selected]);
 
   return (
-    <section className="h-[200vh] md:h-screen w-full grid md:grid-cols-[2fr_2fr] px-4 pt-8 pb-2 sm400:px-6 sm:pb-4 max-w-[1500px]">
+    <section className="h-[200vh] md:h-screen w-full grid md:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_3fr] px-4 pt-8 pb-2 sm400:px-6 sm:pb-4 max-w-[1500px]">
       <div className="hidden md:flex justify-center items-center pr-8 ">
         <AnimatePresence mode="wait">
           {project && (
