@@ -67,6 +67,8 @@ const projects = [
 export default function SectionProjectsDesc({
   scrollY,
 }: SectionProjectsDescProps) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [selected, setSelected] = useState("");
   const [project, setProject] = useState<
     | {
@@ -83,6 +85,32 @@ export default function SectionProjectsDesc({
       }
   >();
 
+  const [oldProject, setOldProject] = useState<
+    | {
+        title: string;
+        description: string;
+        link: string;
+        titlePhoto: string;
+      }
+    | {
+        title: string;
+        link: string;
+        titlePhoto: string;
+        description?: undefined;
+      }
+  >();
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = event;
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+      });
+    }
+  };
+
   useEffect(() => {
     projects.forEach((project) => {
       if (project.title === selected) {
@@ -91,19 +119,41 @@ export default function SectionProjectsDesc({
         setProject(undefined);
       }
     });
+    setOldProject(project);
   }, [selected]);
+
+  console.log(mousePosition.x);
 
   return (
     <section className="h-[200vh] md:h-screen w-full grid md:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_3fr] px-4 pt-8 pb-2 sm400:px-6 sm:pb-4 max-w-[1500px]">
-      <div className="hidden md:flex justify-center items-center pr-8 ">
-        <AnimatePresence mode="wait">
+      <div className="hidden md:flex justify-center items-center pr-8 relative">
+        <AnimatePresence mode="sync">
           {project && (
             <motion.div
-              className="flex flex-col"
-              animate={{ opacity: 1 }}
+              key={project?.titlePhoto} // Użyj key, aby upewnić się, że komponent zmienia się dynamicznie
+              className="absolute top-1/2 left-0 w-full h-full flex flex-col pr-8"
+              animate={{
+                opacity: 1,
+                translateY:
+                  -window.innerHeight / 2 +
+                  window.innerHeight / 5 +
+                  mousePosition.y / 3,
+              }}
               exit={{ opacity: 0 }}
-              initial={{ opacity: 0 }}
-              transition={{ ease: "easeInOut", duration: 0.3 }}
+              initial={{
+                opacity: 0,
+                translateY:
+                  -window.innerHeight / 2 +
+                  window.innerHeight / 5 +
+                  mousePosition.y / 3,
+              }}
+              transition={{ ease: "easeInOut", duration: 0.2 }}
+              // style={{
+              //   translateY:
+              //     -window.innerHeight / 2 +
+              //     window.innerHeight / 5 +
+              //     mousePosition.y / 3,
+              // }}
             >
               <div className="w-full aspect-video overflow-hidden">
                 <img
@@ -113,6 +163,44 @@ export default function SectionProjectsDesc({
                 />
               </div>
               <p className="text-white">{project?.description}</p>
+            </motion.div>
+          )}
+
+          {oldProject !== project && oldProject && (
+            <motion.div
+              key={oldProject?.titlePhoto} // Zmiana key dla starego projektu
+              className="absolute top-1/2 left-0 w-full h-full flex flex-col pr-8"
+              animate={{
+                opacity: 0,
+                translateY:
+                  -window.innerHeight / 2 +
+                  window.innerHeight / 5 +
+                  mousePosition.y / 3,
+              }}
+              initial={{
+                opacity: 1,
+                translateY:
+                  -window.innerHeight / 2 +
+                  window.innerHeight / 5 +
+                  mousePosition.y / 3,
+              }}
+              exit={{ opacity: 0 }}
+              // style={{
+              //   translateY:
+              //     -window.innerHeight / 2 +
+              //     window.innerHeight / 10 +
+              //     mousePosition.y / 2,
+              // }}
+              transition={{ ease: "easeInOut", duration: 0.2 }}
+            >
+              <div className="w-full aspect-video overflow-hidden">
+                <img
+                  src={oldProject?.titlePhoto}
+                  alt={oldProject?.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <p className="text-white">{oldProject?.description}</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -155,7 +243,11 @@ export default function SectionProjectsDesc({
           }
         })}
       </div>
-      <div className="hidden md:flex justify-center items-center flex-col ">
+      <div
+        className="hidden md:flex justify-center items-center flex-col "
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+      >
         {projects.map((project, index) => (
           <ProjectItem
             key={index}

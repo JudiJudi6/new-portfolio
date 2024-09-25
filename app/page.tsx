@@ -108,7 +108,7 @@ export default function Home() {
       <SectionWelcome scrollY={y} />
       <SectionDescription scrollY={y} scrollbar={scrollbarRef} />
       <Background distance={y} scrollbar={scrollbarRef} />
-      <div className="absolute top-[200vh] left-0 w-full z-30  text-white">
+      <div className="absolute top-[200vh] left-0 w-full z-30  text-white overflow-x-hidden">
         <SectionExp scrollY={y} />
         <SectionExpDesc />
         <SectionProjects />
