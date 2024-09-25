@@ -125,35 +125,23 @@ export default function SectionProjectsDesc({
   console.log(mousePosition.x);
 
   return (
-    <section className="h-[200vh] md:h-screen w-full grid md:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_3fr] px-4 pt-8 pb-2 sm400:px-6 sm:pb-4 max-w-[1500px]">
+    <section className="h-[200vh] md:h-screen w-full grid md:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_3fr] px-4 pt-8 pb-2 sm400:px-6 sm:pb-4 max-w-[1500px] mx-auto">
       <div className="hidden md:flex justify-center items-center pr-8 relative">
         <AnimatePresence mode="sync">
           {project && (
             <motion.div
               key={project?.titlePhoto} // Użyj key, aby upewnić się, że komponent zmienia się dynamicznie
-              className="absolute top-1/2 left-0 w-full h-full flex flex-col pr-8"
-              animate={{
-                opacity: 1,
-                translateY:
-                  -window.innerHeight / 2 +
-                  window.innerHeight / 5 +
-                  mousePosition.y / 3,
-              }}
+              className="absolute top-1/2 left-0 w-full h-full flex flex-col px-8 lg:pr-12"
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              initial={{
-                opacity: 0,
+              initial={{ opacity: 0 }}
+              transition={{ ease: "easeInOut", duration: 0.2 }}
+              style={{
                 translateY:
                   -window.innerHeight / 2 +
                   window.innerHeight / 5 +
                   mousePosition.y / 3,
               }}
-              transition={{ ease: "easeInOut", duration: 0.2 }}
-              // style={{
-              //   translateY:
-              //     -window.innerHeight / 2 +
-              //     window.innerHeight / 5 +
-              //     mousePosition.y / 3,
-              // }}
             >
               <div className="w-full aspect-video overflow-hidden">
                 <img
@@ -162,35 +150,25 @@ export default function SectionProjectsDesc({
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-white">{project?.description}</p>
+              <p className="text-white text-sm p-4 lg:text-lg">
+                {project?.description}
+              </p>
             </motion.div>
           )}
 
           {oldProject !== project && oldProject && (
             <motion.div
               key={oldProject?.titlePhoto} // Zmiana key dla starego projektu
-              className="absolute top-1/2 left-0 w-full h-full flex flex-col pr-8"
-              animate={{
-                opacity: 0,
-                translateY:
-                  -window.innerHeight / 2 +
-                  window.innerHeight / 5 +
-                  mousePosition.y / 3,
-              }}
-              initial={{
-                opacity: 1,
-                translateY:
-                  -window.innerHeight / 2 +
-                  window.innerHeight / 5 +
-                  mousePosition.y / 3,
-              }}
+              className="absolute top-1/2 left-0 w-full h-full flex flex-col px-8 lg:pr-12"
+              animate={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              // style={{
-              //   translateY:
-              //     -window.innerHeight / 2 +
-              //     window.innerHeight / 10 +
-              //     mousePosition.y / 2,
-              // }}
+              style={{
+                translateY:
+                  -window.innerHeight / 2 +
+                  window.innerHeight / 5 +
+                  mousePosition.y / 3,
+              }}
               transition={{ ease: "easeInOut", duration: 0.2 }}
             >
               <div className="w-full aspect-video overflow-hidden">
@@ -200,7 +178,9 @@ export default function SectionProjectsDesc({
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-white">{oldProject?.description}</p>
+              <p className="text-white text-sm p-4 lg:text-lg">
+                {oldProject?.description}
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
