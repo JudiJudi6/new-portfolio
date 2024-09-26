@@ -113,7 +113,7 @@ export default function Home() {
         <SectionExpDesc />
         <SectionProjects />
         <SectionProjectsDesc scrollY={y} />
-        <SectionSkills />
+        <SectionSkills scrollY={y} />
         <SectionSkillsDesc />
         <SectionOut />
       </div>
