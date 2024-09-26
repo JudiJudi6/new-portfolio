@@ -22,7 +22,7 @@ export default function ProjectItem({
   if (md) {
     return (
       <MotionLink
-        href={link}
+        href=""
         initial={{ translateX: "20%", opacity: 0 }}
         whileInView={{ translateX: 0, opacity: 1 }}
         viewport={{ amount: 0.8 }}
@@ -39,7 +39,7 @@ export default function ProjectItem({
           setSeleced && setSeleced("");
         }}
       >
-        <p className="text-3xl lg:text-4xl font-semib old upperc ase tracking-wider opacity-40 hover:opacity-100 transition-all duration-200 py-3 hover:translate-x-4">
+        <p className="text-3xl tracking-wider opacity-40 hover:opacity-100 transition-all duration-200 py-3 hover:translate-x-4">
           {title}
         </p>
       </MotionLink>
