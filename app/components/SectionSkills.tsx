@@ -15,7 +15,7 @@ export default function SectionSkills({ scrollY }: { scrollY: number }) {
           whileInView={{ translateX: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          The best
+          Some
         </motion.p>
         <motion.div
           className="flex justify-center items-end"
