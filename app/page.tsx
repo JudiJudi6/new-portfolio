@@ -102,6 +102,7 @@ export default function Home() {
     });
   }, [y]);
 
+  
   return (
     <main className=" relative flex min-h-[1000vh] w-full flex-col items-center ">
       <Loader scrollbarRef={scrollbarRef} />
